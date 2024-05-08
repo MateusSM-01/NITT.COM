@@ -82,12 +82,14 @@
   .meta {
     display: flex;
     flex-direction: column;
+    
   }
   
   .meta-item {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-bottom: 10px;
+    
   }
   
   .meta-label {
@@ -98,16 +100,26 @@
   .meta-value-large {
     font-size: 1.4rem;
     font-weight: bold;
+    
   }
   
   .meta-value-medium {
     font-size: 1.0rem;
+    margin: 0px 10px;
+    font-weight: bold;
   }
   
+  .meta-value-small-bold {
+    font-size: 0.8rem;
+    margin: 0px 10px;
+    font-weight: bold;
+  }
   .meta-value-small {
     font-size: 0.8rem;
+    margin: 0px 10px;
+
   }
-  .meta-value-icon {
+  .meta-value-play {
     justify-content: space-around;
     background-image: url('../assets/img/botao-play.png');
     background-size: contain; /* para ajustar o tamanho do ícone */

@@ -1,3 +1,6 @@
+<?php
+    include("../model/conexao.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -7,7 +10,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>NITT</title>
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="bg-primary">
