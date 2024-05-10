@@ -2,7 +2,7 @@
 $servidor='localhost';
 $usuario='root';
 $senha='';
-$db='dadosnitt';
+$db='DADOSNITT';
 
 $con=mysqli_connect($servidor, $usuario, $senha,$db);
 

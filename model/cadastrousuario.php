@@ -7,7 +7,7 @@
         $query = "SELECT COUNT(*) as total FROM usuarios WHERE email = ?";
         
         // Preparar a declaração
-        $stmt = $conexao->prepare($query);
+        $stmt = $con->prepare($query);
         
         // Bind dos parâmetros
         $stmt->bind_param("s", $email);
@@ -27,6 +27,12 @@
     }
 
     function cadastrarUsuario($primeiroNome, $sobrenome, $email, $senha) {
+        // Verificar se o email já existe
+        if (emailExiste($email)) {
+            // Se o email já existir, retorna false
+            return false;
+        }
+        
         // Inclua o arquivo de conexão
         include("../model/conexao.php");
         
@@ -34,7 +40,7 @@
         $query = "INSERT INTO usuarios (nome, sobrenome, email, senha) VALUES (?, ?, ?, ?)";
         
         // Preparar a declaração
-        $stmt = $conexao->prepare($query);
+        $stmt = $con->prepare($query);
         
         // Bind dos parâmetros
         $stmt->bind_param("ssss", $primeiroNome, $sobrenome, $email, $senha);

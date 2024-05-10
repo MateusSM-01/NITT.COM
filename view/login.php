@@ -7,8 +7,6 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
         <title>NITT</title>
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -43,7 +41,7 @@
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="registro.html">Precisa de uma conta? Inscrever-se!</a></div>
+                                        <div class="small"><a href="registro.php">Precisa de uma conta? Inscrever-se!</a></div>
                                     </div>
                                 </div>
                             </div>
