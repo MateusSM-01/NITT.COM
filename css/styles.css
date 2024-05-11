@@ -677,7 +677,6 @@ progress {
 .col {
   flex: 1 0 0%;
 }
-
 .row-cols-auto > * {
   flex: 0 0 auto;
   width: auto;
@@ -3620,9 +3619,10 @@ textarea.form-control-lg {
   --bs-nav-link-disabled-color: #6c757d;
   display: flex;
   flex-wrap: wrap;
-  padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  padding: auto;
+  justify-items: space-around;
 }
 
 .nav-link {
@@ -3685,7 +3685,9 @@ textarea.form-control-lg {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.col{
 
+}
 .nav-pills {
   --bs-nav-pills-border-radius: 0.375rem;
   --bs-nav-pills-link-active-color: #fff;
