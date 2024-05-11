@@ -1,5 +1,13 @@
 <?php
     include("../model/conexao.php");
+        // Verifica se há uma mensagem de erro na URL
+        if (isset($_GET['erro'])) {
+            // Exibe a mensagem de erro
+            $mensagemErro = urldecode($_GET['erro']);
+            echo '<div class="alert alert-danger" role="alert">';
+            echo $mensagemErro;
+            echo '</div>';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,13 +29,13 @@
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Efetue login no NITT</h3></div>
                                     <div class="card-body">
-                                        <form>
+                                        <form method="POST" action="../controller/validalogin.php">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputEmail" type="email" placeholder="name@example.com" />
+                                                <input class="form-control" id="inputEmail" name="email" type="email" placeholder="name@example.com" />
                                                 <label for="inputEmail">Email</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" type="password" placeholder="Password" />
+                                                <input class="form-control" id="inputPassword" name="senha" type="password" placeholder="Password" />
                                                 <label for="inputPassword">Senha</label>
                                             </div>
                                             <div class="form-check mb-3">
@@ -36,7 +44,7 @@
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
                                                 <a class="small" href="senha.html">Esqueceu sua senha?</a>
-                                                <a class="btn btn-primary" href="index.html">Login</a>
+                                                <button type="submit" class="btn btn-primary">Login</button>
                                             </div>
                                         </form>
                                     </div>

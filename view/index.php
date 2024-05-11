@@ -1,6 +1,9 @@
 <?php
     include("../model/conexao.php");
-?>
+    session_start();
+    if (isset($_SESSION["email"])) {
+        // O usuário está autenticado, continue com a lógica da aplicação
+?>   
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -78,3 +81,9 @@
         <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>
+<?php
+} else {
+    header('Location: ../view/login.php?erro=Realize+o+login.');
+    exit;
+}
+?>
