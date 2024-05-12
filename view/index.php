@@ -1,10 +1,11 @@
 <?php
 include("../model/conexao.php");
+
 session_start();
 if (!isset($_SESSION["email"])) {
     header('Location: ../view/login.php?erro=Realize+o+login.');
     exit;
-}
+}else{
 
 // Consulta SQL para buscar as atividades do usuário logado
 $emailUsuario = $_SESSION["email"];
@@ -15,6 +16,8 @@ $stmtAtividades = mysqli_prepare($con, $queryAtividades);
 mysqli_stmt_bind_param($stmtAtividades, "s", $emailUsuario);
 mysqli_stmt_execute($stmtAtividades);
 $resultAtividades = mysqli_stmt_get_result($stmtAtividades);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +29,6 @@ $resultAtividades = mysqli_stmt_get_result($stmtAtividades);
     <meta name="description" content="">
     <meta name="author" content="">
     <title>NITT</title>
-    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet">
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/cssmetas.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -35,6 +37,10 @@ $resultAtividades = mysqli_stmt_get_result($stmtAtividades);
 
     <div id="layoutSidenav_content">
         <main>
+        <form action="../controller/logout.php" method="post">
+            <button type="submit" class="btn btn-primary">Sair</button>
+        </form>
+
             <div class="container-fluid px-4">
                 <h1 class="mt-4"> Aqui estão seus à fazeres ! </h1>
                 <ol class="breadcrumb mb-4">
@@ -47,7 +53,7 @@ $resultAtividades = mysqli_stmt_get_result($stmtAtividades);
                         ORGANIZE OS SEUS ESTUDOS
                     </div>
                     <?php while ($row = mysqli_fetch_assoc($resultAtividades)) { ?>
-                    <div class="card-body">
+                    <div class="card-body mb-4">
                         <div class="meta">
                             <div class="meta-item">
                                 <div class="meta-value-large"><?php echo $row['descricao']; ?></div>
