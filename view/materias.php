@@ -1,5 +1,8 @@
 <?php
     include("../model/conexao.php");
+    include("footer.php");
+    include("header.php");
+
     session_start();
     if (!isset($_SESSION["email"])) {
         header('Location: ../view/login.php?erro=Realize+o+login.');
@@ -66,18 +69,5 @@
             ?>
         </div>
     </div>
-
-    <div class="fixed-bottom mb-4 d-flex justify-content-around">
-        <div class="col text-center">
-            <a href="../view/index.php"><button type="button" class="btn btn-primary">Home</button></a>
-        </div>
-        <div class="col text-center">
-            <a href="../view/addmateria.php"><button type="button" class="btn btn-primary">Adicionar Materia</button></a>
-        </div>
-        <div class="col text-center">
-            <a href="../view/materias.php"><button type="button" class="btn btn-primary">Matérias</button></a>
-        </div>
-    </div>
-
 </body>
 </html>

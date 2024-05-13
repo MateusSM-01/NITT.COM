@@ -16,7 +16,7 @@ function adicionarAtividade($descricao, $data_entrega, $materia_id, $emailUsuari
     // Verifica se o ID do usuário foi encontrado
     if ($usuario_id) {
         // Consulta SQL para inserir uma nova atividade
-        $queryAtividade = "INSERT INTO atividades (descricao, data_entrega, materia_id, usuario_id) VALUES (?, ?, ?, ?)";
+        $queryAtividade = "INSERT INTO atividades (nome, data_entrega, materia_id, usuario_id) VALUES (?, ?, ?, ?)";
         $stmtAtividade = mysqli_prepare($con, $queryAtividade);
 
         mysqli_stmt_bind_param($stmtAtividade, "ssii", $descricao, $data_entrega, $materia_id, $usuario_id);

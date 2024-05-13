@@ -1,5 +1,8 @@
 <?php
 include("../model/conexao.php");
+include("footer.php");
+include("header.php");
+
 session_start();
 if (!isset($_SESSION["email"])) {
     header('Location: ../view/login.php?erro=Realize+o+login.');
@@ -32,31 +35,16 @@ $resultMat = mysqli_stmt_get_result($stmtMat);
 <body>
 
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Adicionar Nova Atividade</h1>
+        <h1 class="text-center mb-4">Adicionar Nova Matéria</h1>
         
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form method="post" action="../controller/validaatividade.php">
+                <form method="post" action="../controller/validamateria.php">
                     <div class="mb-3">
-                        <label for="descricao" class="form-label">Descrição da Atividade</label>
-                        <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+                        <label for="descricao" class="form-label">Nome Matéria</label>
+                        <textarea class="form-control" id="descricao" name="nome" rows="3" required></textarea>
                     </div>
-                    <div class="mb-3">
-                        <label for="data_entrega" class="form-label">Data de Entrega</label>
-                        <input type="date" class="form-control" id="data_entrega" name="data_entrega" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="materia_id" class="form-label">Matéria</label>
-                        <select class="form-select" id="materia_id" name="materia_id" required>
-                            <?php
-                                // Loop através das matérias retornadas pela consulta e cria as opções para o menu suspenso
-                                while ($row = mysqli_fetch_assoc($resultMat)) {
-                                    echo "<option value='" . $row['id'] . "'>" . $row['nome'] . "</option>";
-                                }
-                            ?>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Adicionar Atividade</button>
+                    <button type="submit" class="btn btn-primary">Adicionar Matéria</button>
                 </form>
             </div>
         </div>

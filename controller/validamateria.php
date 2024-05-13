@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Chama a função do modelo para adicionar a matéria
         adicionarMateria($nome, $emailUsuario);
     }
-    header('Location: ../view/materias.php');
+    header('Location: ../view/materia.php');
     exit;
 }
 ?>

@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Chama a função do modelo para adicionar a atividade
         adicionarAtividade($descricao, $data_entrega, $materia_id, $emailUsuario);
     }
-    header('Location: ../view/materias.php');
+    header('Location: ../view/index.php');
     exit;
 }
 ?>

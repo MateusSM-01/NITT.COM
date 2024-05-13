@@ -39,10 +39,10 @@ $fraseMotivacional = mysqli_fetch_assoc($resultFraseMotivacional)['Frase'];
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/cssmetas.css" rel="stylesheet">
 </head>
-<body> 
-    <main>
-        <div class="container-fluid px-4 mx-4">
-            <h1 class="mt-4"> Aqui estão seus à fazeres ! </h1>
+<body class="bg-dark"> 
+    <main >
+        <div class="container-fluid px-4">
+            <h1 class="mt-4 text-primary "> Aqui estão seus à fazeres ! </h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active"><?php echo $fraseMotivacional; ?></li>
             </ol>
@@ -50,10 +50,10 @@ $fraseMotivacional = mysqli_fetch_assoc($resultFraseMotivacional)['Frase'];
             <div class="card mb-4">
                 
                 <?php while ($row = mysqli_fetch_assoc($resultAtividades)) { ?>
-                <div class="card-body mb-4">
-                    <div class="meta">
-                        <div class="meta-item">
-                            <div class="meta-value-large"><?php print_r($row['descricao']); ?></div>
+                <div class="card-body mb-4 mx-4">
+                    <div class="meta mx-4">
+                        <div class="meta-item ">
+                            <div class="meta-value-large"><?php print_r($row['nome']); ?></div>
                         </div>
                         <div class="meta-item">
                             <div class="meta-value-medium">Matéria: <?php echo $row['materia_id']; ?></div>
