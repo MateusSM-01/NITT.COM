@@ -1,6 +1,6 @@
 <?php
 include("../model/conexao.php");
-include("footer.php");
+include("footeratv.php");
 include("header.php");
 
 session_start();

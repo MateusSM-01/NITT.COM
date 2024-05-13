@@ -1,7 +1,6 @@
 <?php
 include("../model/conexao.php");
-include("footer.php");
-include("header.php");
+include("header2.php");
 session_start();
 if (!isset($_SESSION["email"])) {
     header('Location: ../view/login.php?erro=Realize+o+login.');

@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Verificar se a inserção foi bem-sucedida
             if ($stmt->affected_rows > 0) {
                 // Inserção bem-sucedida
-                header('Location: ../view/login.php');
+                header('Location: ../view/login.php?success=Registrado+com+sucesso+,realize+o+login!');
                 exit;
             } else {
                 // Falha na inserção

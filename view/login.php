@@ -7,6 +7,12 @@
             echo '<div class="alert alert-danger" role="alert">';
             echo $mensagemErro;
             echo '</div>';
+    }elseif(isset($_GET['success'])){
+            // Exibe a mensagem de erro
+            $mensagem = urldecode($_GET['success']);
+            echo '<div class="alert alert-info" role="alert">';
+            echo $mensagem;
+            echo '</div>';
     }
 ?>
 <!DOCTYPE html>
