@@ -41,14 +41,12 @@ $fraseMotivacional = mysqli_fetch_assoc($resultFraseMotivacional)['Frase'];
 </head>
 <body class="bg-dark"> 
     <main >
-        <div class="container-fluid px-4">
+        <div class=" container-fluid px-4">
             <h1 class="mt-4 text-primary "> Aqui estão seus à fazeres ! </h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active"><?php echo $fraseMotivacional; ?></li>
             </ol>
-
             <div class="card mb-4">
-                
                 <?php while ($row = mysqli_fetch_assoc($resultAtividades)) { ?>
                 <div class="card-body mb-4 mx-4">
                     <div class="meta mx-4">

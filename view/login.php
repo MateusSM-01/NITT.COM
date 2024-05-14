@@ -25,15 +25,18 @@
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
-    <body class="bg-dark">
+    <body class="bg-light">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">
-                        <div class="row justify-content-center">
+                        <div>
                             <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4 text-primary">Efetue login no NITT</h3></div>
+                                <div class="card shadow-lg border-0 rounded-lg mt-5 d-flex ">
+                                    <div class="card-header col text-center">
+                                        <img class="my-3" src="../imgs/nittlogo.png" width="50px" />
+                                        <h3 class="text-center font-weight-light my-4 text-primary">Efetue login no NITT</h3> 
+                                    </div>
                                     <div class="card-body">
                                         <form method="POST" action="../controller/validalogin.php">
                                             <div class="form-floating mb-3">
