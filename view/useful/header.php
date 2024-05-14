@@ -10,10 +10,10 @@
     <link href="..../css/cssmetas.css" rel="stylesheet">
 </head>
 <body>
-<div class=" d-flex justify-content-between bg-black">
+<div class=" d-flex justify-content-between bg-black px-5">
        
     <a href="index.php"><img class="my-3 mx-4 mt-4" src="../imgs/nittlogo.png" width="60px" /></a>   
-    <a href="../controller/logout.php"><button type="submit" class="btn btn-danger mx-4 mt-4">Sair</button></a>
+    <a href="../controller/logout.php"><button type="submit" class="btn btn-danger my-3 mx-4 mt-4">Sair</button></a>
     
 </div>
 </body>
