@@ -1,6 +1,6 @@
 <?php
 include("../model/conexao.php");
-include("header2.php");
+include("useful/header2.php");
 
 session_start();
 if (!isset($_SESSION["email"])) {
@@ -31,17 +31,16 @@ $resultMat = mysqli_stmt_get_result($stmtMat);
     <link href="../css/cssmetas.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="bg-dark">
 
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Adicionar Nova Matéria</h1>
-        
+    <div class="container mt-5 text-center">
+        <h1 class="text-center mb-4 text-white-75 ">Adicionar Nova Matéria</h1> 
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <form method="post" action="../controller/validamateria.php">
                     <div class="mb-3">
-                        <label for="descricao" class="form-label">Nome Matéria</label>
-                        <textarea class="form-control" id="descricao" name="nome" rows="3" required></textarea>
+                        <label for="descricao" class="form-label text-white-50">Nome Matéria</label>
+                        <textarea class="form-control" id="descricao" name="nome" rows="2" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Adicionar Matéria</button>
                 </form>

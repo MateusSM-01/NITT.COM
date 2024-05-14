@@ -21,7 +21,8 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>NITT</title>
+        <title>Realize o login</title>
+        <link rel="shortcut icon" href="../imgs/nittlogo.png" />
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -29,12 +30,12 @@
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
-                    <div class="container">
-                        <div>
+                <div class="container">
+                    <div class="row justify-content-center">
                             <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5 d-flex ">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5 mx-auto ">
                                     <div class="card-header col text-center">
-                                        <img class="my-3" src="../imgs/nittlogo.png" width="50px" />
+                                        <img class="my-3" src="../imgs/nittlogo.png" width="80px" />
                                         <h3 class="text-center font-weight-light my-4 text-primary">Efetue login no NITT</h3> 
                                     </div>
                                     <div class="card-body">

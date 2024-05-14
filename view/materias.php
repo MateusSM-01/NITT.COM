@@ -1,7 +1,7 @@
 <?php
     include("../model/conexao.php");
-    include("footermat.php");
-    include("header.php");
+    include("useful/footermat.php");
+    include("useful/header.php");
 
     session_start();
     if (!isset($_SESSION["email"])) {
@@ -42,7 +42,7 @@
     <link href="../css/cssmetas.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="bg-dark">
 
     <div class="container mt-5">
         <h1 class="text-center mb-4">Lista de Matérias</h1>

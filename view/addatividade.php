@@ -1,6 +1,6 @@
 <?php
 include("../model/conexao.php");
-include("header2.php");
+include("useful/header2.php");
 session_start();
 if (!isset($_SESSION["email"])) {
     header('Location: ../view/login.php?erro=Realize+o+login.');
@@ -30,25 +30,25 @@ $resultMat = mysqli_stmt_get_result($stmtMat);
     <link href="../css/cssmetas.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="bg-dark">
 
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Adicionar Nova Atividade</h1>
+        <h1 class="text-center mb-4 text-white-75">Adicionar Nova Atividade</h1>
         
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form method="post" action="../controller/validaatividade.php">
+                <form method="post" action="../controller/validaatividade.php" class="text-center">
                     <div class="mb-3">
-                        <label for="descricao" class="form-label">Descrição da Atividade</label>
+                        <label for="descricao" class="form-label text-white-50">Descrição da Atividade : </label>
                         <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
                     </div>
                     <div class="mb-3">
-                        <label for="data_entrega" class="form-label">Data de Entrega</label>
+                        <label for="data_entrega" class="form-label text-white-50">Data de Entrega : </label>
                         <input type="date" class="form-control" id="data_entrega" name="data_entrega" required>
                     </div>
                     <div class="mb-3">
-                        <label for="materia_id" class="form-label">Matéria</label>
-                        <select class="form-select" id="materia_id" name="materia_id" required>
+                        <label for="materia_id" class="form-label text-white-50">Matéria : </label>
+                        <select class="form-select form-control" id="materia_id" name="materia_id" required>
                             <?php
                                 // Loop através das matérias retornadas pela consulta e cria as opções para o menu suspenso
                                 while ($row = mysqli_fetch_assoc($resultMat)) {
@@ -57,7 +57,7 @@ $resultMat = mysqli_stmt_get_result($stmtMat);
                             ?>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Adicionar Atividade</button>
+                    <button type="submit" class="btn btn-primary my-4 ">Adicionar Atividade</button>
                 </form>
             </div>
         </div>

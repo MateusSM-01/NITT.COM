@@ -1,7 +1,7 @@
 <?php
 include("../model/conexao.php");
-include("footeratv.php");
-include("header.php");
+include("useful/footeratv.php");
+include("useful/header.php");
 
 session_start();
 if (!isset($_SESSION["email"])) {
@@ -35,21 +35,22 @@ $fraseMotivacional = mysqli_fetch_assoc($resultFraseMotivacional)['Frase'];
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>NITT</title>
+    <title>Suas atividades</title>
+    <link rel="shortcut icon" href="../imgs/nittlogo.png" />
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/cssmetas.css" rel="stylesheet">
 </head>
 <body class="bg-dark"> 
     <main >
         <div class=" container-fluid px-4">
-            <h1 class="mt-4 text-primary "> Aqui estão seus à fazeres ! </h1>
-            <ol class="breadcrumb mb-4">
+            <h1 class="mt-4 text-primary mx-4"> Aqui estão seus à fazeres ! </h1>
+            <ol class="breadcrumb mb-4 mx-4">
                 <li class="breadcrumb-item active"><?php echo $fraseMotivacional; ?></li>
             </ol>
             <div class="card mb-4">
                 <?php while ($row = mysqli_fetch_assoc($resultAtividades)) { ?>
-                <div class="card-body mb-4 mx-4">
-                    <div class="meta mx-4">
+                <div class="card-body mb-4 mx-5">
+                    <div class="meta ">
                         <div class="meta-item ">
                             <div class="meta-value-large"><?php print_r($row['nome']); ?></div>
                         </div>
