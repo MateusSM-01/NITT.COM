@@ -44,9 +44,8 @@
 </head>
 <body class="bg-dark">
 
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">Lista de Matérias</h1>
-        
+    <div class="container-fluid px-4">
+        <h1 class="mt-4 text-primary m-4"> Aqui estão suas matérias! </h1>
         <div class="row">
             <?php
                 // Verifica se há matérias retornadas pela consulta

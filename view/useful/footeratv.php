@@ -14,13 +14,13 @@
 <body>
 <div class="fixed-bottom mb-0 d-flex justify-content-around bg-black ">
     <div class="col text-center">
-        <a href="../view/index.php"><button type="button" class="btn text-light text-center fw-bold p-4"><i class="fa-solid fa-house" style="color: #63A1FF; font-size: 30px;"></i></button></a>
+        <a href="../view/index.php"><button type="button" class="btn text-light text-center fw-bold py-4"><i class="fa-solid fa-house" style="color: #63A1FF; font-size: 30px;"></i></button></a>
     </div>
     <div class="col text-center">
-        <a href="../view/addatividade.php"><button type="button" class="btn text-light text-center fw-bold p-4"><i class="fa-solid fa-plus" style="color: #63A1FF;font-size: 30px;"></i></button></a>
+        <a href="../view/addatividade.php"><button type="button" class="btn text-light text-center fw-bold py-4"><i class="fa-solid fa-plus" style="color: #63A1FF;font-size: 30px;"></i></button></a>
     </div>
     <div class="col text-center">
-        <a href="../view/materias.php"><button type="button" class="btn text-light text-center fw-bold p-4"><i class="fa-solid fa-book" style="color: #63A1FF;font-size: 30px;"></i></button></a>
+        <a href="../view/materias.php"><button type="button" class="btn text-light text-center fw-bold py-4"><i class="fa-solid fa-book" style="color: #63A1FF;font-size: 30px;"></i></button></a>
     </div>
 </div>
 </body>
