@@ -32,10 +32,9 @@ $resultMat = mysqli_stmt_get_result($stmtMat);
 </head>
 <body class="bg-dark">
 
-    <div class="container mt-5">
+    <div class="container mt-5 ">
         <h1 class="text-center mb-4 text-white-75">Adicionar Nova Atividade</h1>
-        
-        <div class="row justify-content-center">
+        <div class="d-flex justify-content-center align-items-center">
             <div class="col-md-6">
                 <form method="post" action="../controller/validaatividade.php" class="text-center">
                     <div class="mb-3">

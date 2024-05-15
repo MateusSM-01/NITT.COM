@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="..../css/styles.css" rel="stylesheet">
-    <link href="..../css/cssmetas.css" rel="stylesheet">
+    <title>Suas atividades</title>
+    <link rel="shortcut icon" href="../imgs/nittlogo.png" />
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/cssmetas.css" rel="stylesheet">
 </head>
 <body>
 <div class=" d-flex justify-content-between align-items-center bg-black px-5">
-       
     <a href="index.php"><img class="mx-2" src="../imgs/nittlogo.png" width="60px" /></a>   
-    <a href="../controller/logout.php"><button type="submit" class="btn btn-danger mx-2">Sair</button></a>
-    
+    <a href="../controller/logout.php"><button type="submit" class="btn btn-danger mx-2">Sair</button></a>   
 </div>
 </body>
 </html>

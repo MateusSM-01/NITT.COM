@@ -35,12 +35,12 @@ $resultMat = mysqli_stmt_get_result($stmtMat);
 
     <div class="container mt-5 text-center">
         <h1 class="text-center mb-4 text-white-75 ">Adicionar Nova Matéria</h1> 
-        <div class="row justify-content-center">
+        <div class="d-flex justify-content-center align-items-center">
             <div class="col-md-6">
                 <form method="post" action="../controller/validamateria.php">
                     <div class="mb-3">
                         <label for="descricao" class="form-label text-white-50">Nome Matéria</label>
-                        <textarea class="form-control" id="descricao" name="nome" rows="2" required></textarea>
+                        <textarea class="form-control" id="descricao" name="nome" rows="1" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Adicionar Matéria</button>
                 </form>
