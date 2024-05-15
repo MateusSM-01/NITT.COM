@@ -31,14 +31,14 @@
             <div id="layoutAuthentication_content">
                 <main>
                 <div class="container">
-                    <div class="row justify-content-center">
+                    <div class="row justify-content-center ">
                             <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5 mx-auto ">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5 ">
                                     <div class="card-header col text-center">
                                         <img class="my-3" src="../imgs/nittlogo.png" width="80px" />
                                         <h3 class="text-center font-weight-light my-4 text-primary">Efetue login no NITT</h3> 
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body col justify-content-center align-items-center px-5">
                                         <form method="POST" action="../controller/validalogin.php">
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="inputEmail" name="email" type="email" placeholder="name@example.com" />
@@ -50,16 +50,16 @@
                                             </div>
                                             <div class="form-check mb-3">
                                                 <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
-                                                <label class="form-check-label" for="inputRememberPassword">Lembrar senha</label>
+                                                <label class="form-check-label text-link" for="inputRememberPassword">Lembrar senha</label>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="senha.html">Esqueceu sua senha?</a>
+                                                <a class="small " href="senha.html">Esqueceu sua senha?</a>
                                                 <button type="submit" class="btn btn-primary">Login</button>
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center py-3">
-                                        <div class="small"><a href="registro.php">Precisa de uma conta? Inscrever-se!</a></div>
+                                        <div class="small "><a href="registro.php">Precisa de uma conta? Inscrever-se!</a></div>
                                     </div>
                                 </div>
                             </div>
