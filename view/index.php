@@ -58,22 +58,93 @@ $fraseMotivacional = mysqli_fetch_assoc($resultFraseMotivacional)['Frase'];
                         <div class="meta-item">
                             <div class="meta-value-small">Data de Entrega: <?php echo $row['data_entrega']; ?></div>
                         </div>
-                        <div class="meta-item">
+                        <!-- <div class="meta-item">
                             <div class="meta-value-small-bold">Iniciar</div> <div class="meta-value-play"><a href="#"></a></div>
+                        </div> -->
+                        <div class="meta-item">
+                        <div class="meta-value-play">
+                            <a class="iniciar-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#pomodoroModal">Iniciar</a>
+                        </div>
                         </div>
                     </div>
                 </div>
                 <?php } ?>
             </div>
         </div>
+        <div class="modal fade" id="pomodoroModal" tabindex="-1" aria-labelledby="pomodoroModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="pomodoroModalLabel">Pomodoro Timer</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="timer">25:00</div>
+                        <button class="startTimerBtn">Iniciar</button>
+                        <button class="stopTimerBtn">Parar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    <script src="js/scripts.js"></script>
+ 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
     <script src="assets/demo/chart-area-demo.js"></script>
     <script src="assets/demo/chart-bar-demo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
-    <script src="js/datatables-simple-demo.js"></script>
+    
+    
+    <script>document.addEventListener('DOMContentLoaded', function() {
+    let timerInterval;
+    const timerElement = document.getElementById('timer');
+    const startTimerBtn = document.getElementById('startTimerBtn');
+    const stopTimerBtn = document.getElementById('stopTimerBtn');
+
+    startTimerBtn.addEventListener('click', function() {
+        startTimer();
+    });
+
+    stopTimerBtn.addEventListener('click', function() {
+        clearInterval(timerInterval);
+    });
+
+    function startTimer(activityId) {
+    let totalTime = 25 * 60; // Tempo total em segundos (25 minutos)
+    let remainingTime = totalTime; // Tempo restante inicialmente igual ao tempo total
+
+    timerInterval = setInterval(function() {
+        let minutes = Math.floor(remainingTime / 60);
+        let seconds = remainingTime % 60;
+
+        if (remainingTime <= 0) {
+            clearInterval(timerInterval);
+            registerTime(activityId, totalTime); // Registra o tempo quando o temporizador termina
+        } else {
+            // Atualiza o temporizador na interface do usuário
+            timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            remainingTime--; // Decrementa o tempo restante
+        }
+    }, 1000);
+}
+
+function registerTime(activityId, totalTime) {
+    // Aqui você pode enviar os dados do temporizador para o servidor via AJAX
+    // Por exemplo, você pode enviar activityId e totalTime para registrar o tempo no banco de dados
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'registrar_tempo.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Aqui você pode lidar com a resposta do servidor, se necessário
+        }
+    };
+    xhr.send(`activity_id=${activityId}&elapsed_time=${totalTime}`);
+}
+
+});
+</script>
 </body>
 </html>

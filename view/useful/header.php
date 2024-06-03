@@ -9,6 +9,8 @@
     <link rel="shortcut icon" href="../imgs/nittlogo.png" />
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/cssmetas.css" rel="stylesheet">
+    <!-- <script type="text/javascript" src="../js/script.js"></script> -->
+    
 </head>
 <body>
 <div class=" d-flex justify-content-between align-items-center bg-black px-5">
