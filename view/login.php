@@ -1,18 +1,18 @@
 <?php
     include("../model/conexao.php");
-        // Verifica se há uma mensagem de erro na URL
-        if (isset($_GET['erro'])) {
-            // Exibe a mensagem de erro
-            $mensagemErro = urldecode($_GET['erro']);
-            echo '<div class="alert alert-danger" role="alert">';
-            echo $mensagemErro;
-            echo '</div>';
-    }elseif(isset($_GET['success'])){
-            // Exibe a mensagem de erro
-            $mensagem = urldecode($_GET['success']);
-            echo '<div class="alert alert-info" role="alert">';
-            echo $mensagem;
-            echo '</div>';
+    // Verifica se há uma mensagem de erro na URL
+    if (isset($_GET['erro'])) {
+        // Exibe a mensagem de erro
+        $mensagemErro = urldecode($_GET['erro']);
+        echo '<div class="alert alert-danger" role="alert">';
+        echo $mensagemErro;
+        echo '</div>';
+    } elseif (isset($_GET['success'])) {
+        // Exibe a mensagem de erro
+        $mensagem = urldecode($_GET['success']);
+        echo '<div class="alert alert-info" role="alert">';
+        echo $mensagem;
+        echo '</div>';
     }
 ?>
 <!DOCTYPE html>
@@ -40,13 +40,16 @@
                                     </div>
                                     <div class="card-body col justify-content-center align-items-center px-5">
                                         <form method="POST" action="../controller/validalogin.php">
-                                            <div class="form-floating mb-3">
+                                            <div class="form-floating mb-3 position-relative">
                                                 <input class="form-control" id="inputEmail" name="email" type="email" placeholder="name@example.com" />
                                                 <label for="inputEmail">Email</label>
                                             </div>
-                                            <div class="form-floating mb-3">
-                                                <input class="form-control" id="inputPassword" name="senha" type="password" placeholder="Password" />
-                                                <label for="inputPassword">Senha</label>
+                                            <div class="form-floating mb-3 position-relative">
+                                            <input class="form-control" id="inputPassword" name="senha" type="password" placeholder="Password" required>
+                                            <label for="inputPassword">Senha</label>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary position-absolute end-0 top-50 translate-middle-y" id="togglePassword">
+                                            <i class="fas fa-eye"></i>
+                                            </button>     
                                             </div>
                                             <div class="form-check mb-3">
                                                 <input class="form-check-input" id="inputRememberPassword" type="checkbox" value="" />
@@ -84,6 +87,13 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script>
+            document.getElementById('togglePassword').addEventListener('click', function () {
+                const passwordField = document.getElementById('inputPassword');
+                const isPassword = passwordField.type === 'password';
+                passwordField.type = isPassword ? 'text' : 'password';
+                this.innerHTML = isPassword ? '<i class="fas fa-eye-slash"></i>' : '<i class="fas fa-eye"></i>';
+            });
+        </script>
     </body>
 </html>

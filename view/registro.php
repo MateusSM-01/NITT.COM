@@ -29,8 +29,8 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="card shadow-lg border-0 rounded-lg mt-5">
-                            <div class="card-header"><h3 class="text-center font-weight-light my-4">
-                                    Criar uma conta</h3></div>
+                            <div class="card-header">
+                            <h3 class="text-center font-weight-light my-4 text-primary">Cadastre-se no NITT</h3> 
                             <div class="card-body">
                                 <form method="post" action="../controller/validausuario.php">
                                     <div class="row mb-3">
