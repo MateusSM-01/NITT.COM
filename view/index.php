@@ -8,7 +8,6 @@ if (!isset($_SESSION["email"])) {
     header('Location: ../view/login.php?erro=Realize+o+login.');
     exit;
 } else {
-    // Consulta SQL para buscar as atividades do usuário logado
     $emailUsuario = $_SESSION["email"];
     $queryAtividades = "SELECT * FROM atividades WHERE usuario_id = (
                         SELECT id FROM usuarios WHERE email = ?
@@ -18,7 +17,6 @@ if (!isset($_SESSION["email"])) {
     mysqli_stmt_execute($stmtAtividades);
     $resultAtividades = mysqli_stmt_get_result($stmtAtividades);
 
-    // Consulta SQL para buscar uma frase motivacional aleatória
     $queryFraseMotivacional = "SELECT Frase FROM FrasesMotivac ORDER BY RAND() LIMIT 1";
     $resultFraseMotivacional = mysqli_query($con, $queryFraseMotivacional);
     $fraseMotivacional = mysqli_fetch_assoc($resultFraseMotivacional)['Frase'];
@@ -69,20 +67,24 @@ if (!isset($_SESSION["email"])) {
 
         <!-- Modal do Pomodoro -->
         <div class="modal fade" id="pomodoroModal" tabindex="-1" aria-labelledby="pomodoroModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-light">
+                    <div class="modal-header bg-dark text-light"> <!-- Alterado para fundo escuro e texto claro -->
                         <h5 class="modal-title" id="pomodoroModalLabel">Pomodoro Timer</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button> <!-- Botão de fechar com estilo claro -->
                     </div>
-                    <div class="modal-body">
-                        <div id="timer">25:00</div>
-                        <button id="startTimerBtn" class="btn btn-success">Iniciar</button>
+                    <div class="modal-body text-center">
+                        <div id="timer" class="display-4 mb-4">25:00</div>
+                        <button id="startTimerBtn" class="btn btn-success me-2">Iniciar</button>
+                        <button id="pauseTimerBtn" class="btn btn-warning me-2" style="display: none;">Pausar</button>
+                        <button id="resumeTimerBtn" class="btn btn-info me-2" style="display: none;">Retomar</button>
+                        <button id="resetTimerBtn" class="btn btn-secondary me-2">Zerar</button>
                         <button id="stopTimerBtn" class="btn btn-danger">Parar</button>
                     </div>
                 </div>
             </div>
         </div>
+
     </main>
 
     <!-- Scripts do Bootstrap e temporizador -->
@@ -90,8 +92,12 @@ if (!isset($_SESSION["email"])) {
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         let timerInterval;
+        let remainingTime = 25 * 60; // Tempo total em segundos (25 minutos)
         const timerElement = document.getElementById('timer');
         const startTimerBtn = document.getElementById('startTimerBtn');
+        const pauseTimerBtn = document.getElementById('pauseTimerBtn');
+        const resumeTimerBtn = document.getElementById('resumeTimerBtn');
+        const resetTimerBtn = document.getElementById('resetTimerBtn');
         const stopTimerBtn = document.getElementById('stopTimerBtn');
         let activityId;
 
@@ -99,31 +105,47 @@ if (!isset($_SESSION["email"])) {
         document.querySelectorAll('.iniciar-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 activityId = this.getAttribute('data-id');
-                // Reseta o temporizador para 25:00 ao abrir o modal
-                timerElement.textContent = "25:00";
-                clearInterval(timerInterval); // Para qualquer temporizador anterior
+                resetTimer(); // Reseta o temporizador para 25:00 ao abrir o modal
             });
         });
 
         startTimerBtn.addEventListener('click', function() {
             startTimer(activityId);
+            startTimerBtn.style.display = 'none';
+            pauseTimerBtn.style.display = 'inline-block';
+        });
+
+        pauseTimerBtn.addEventListener('click', function() {
+            clearInterval(timerInterval);
+            pauseTimerBtn.style.display = 'none';
+            resumeTimerBtn.style.display = 'inline-block';
+        });
+
+        resumeTimerBtn.addEventListener('click', function() {
+            startTimer(activityId);
+            resumeTimerBtn.style.display = 'none';
+            pauseTimerBtn.style.display = 'inline-block';
+        });
+
+        resetTimerBtn.addEventListener('click', function() {
+            resetTimer();
         });
 
         stopTimerBtn.addEventListener('click', function() {
             clearInterval(timerInterval);
+            resetTimer();
+            var modal = bootstrap.Modal.getInstance(document.getElementById('pomodoroModal'));
+            modal.hide(); // Fecha o modal
         });
 
         function startTimer(activityId) {
-            let totalTime = 25 * 60; // Tempo total em segundos (25 minutos)
-            let remainingTime = totalTime; // Tempo restante inicialmente igual ao tempo total
-
             timerInterval = setInterval(function() {
                 let minutes = Math.floor(remainingTime / 60);
                 let seconds = remainingTime % 60;
 
                 if (remainingTime <= 0) {
                     clearInterval(timerInterval);
-                    registerTime(activityId, totalTime); // Registra o tempo quando o temporizador termina
+                    registerTime(activityId, 25 * 60); // Registra o tempo quando o temporizador termina
                 } else {
                     // Atualiza o temporizador na interface do usuário
                     timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
@@ -132,15 +154,21 @@ if (!isset($_SESSION["email"])) {
             }, 1000);
         }
 
+        function resetTimer() {
+            clearInterval(timerInterval);
+            remainingTime = 25 * 60;
+            timerElement.textContent = "25:00";
+            startTimerBtn.style.display = 'inline-block';
+            pauseTimerBtn.style.display = 'none';
+            resumeTimerBtn.style.display = 'none';
+        }
+
         function registerTime(activityId, totalTime) {
-            // Aqui você pode enviar os dados do temporizador para o servidor via AJAX
-            // Por exemplo, você pode enviar activityId e totalTime para registrar o tempo no banco de dados
             const xhr = new XMLHttpRequest();
             xhr.open('POST', 'registrar_tempo.php', true);
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    // Aqui você pode lidar com a resposta do servidor, se necessário
                     console.log('Tempo registrado com sucesso!');
                 }
             };
