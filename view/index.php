@@ -43,23 +43,35 @@ if (!isset($_SESSION["email"])) {
             </ol>
             <div class="card mb-4">
                 <?php while ($row = mysqli_fetch_assoc($resultAtividades)) { ?>
-                <div class="card-body mb-4 mx-5">
-                    <div class="meta">
-                        <div class="meta-item">
-                            <div class="meta-value-large"><?php echo htmlspecialchars($row['nome']); ?></div>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-value-medium">Matéria: <?php echo htmlspecialchars($row['materia_id']); ?></div>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-value-small">Data de Entrega: <?php echo htmlspecialchars($row['data_entrega']); ?></div>
-                        </div>
-                        <div class="meta-item">
-                            <div class="meta-value-play">
-                                <button class="iniciar-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#pomodoroModal" data-id="<?php echo $row['id']; ?>">Iniciar</button>
+                    <div class="card-body mb-4 mx-5">
+                        <div class="meta">
+                            <div class="meta-item">
+                                <div class="meta-value-large"><?php echo htmlspecialchars($row['nome']); ?></div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value-medium">Matéria: <?php echo htmlspecialchars($row['materia_id']); ?></div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value-small">Data de Entrega: <?php echo htmlspecialchars($row['data_entrega']); ?></div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value-play">
+                                    <button class="iniciar-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#pomodoroModal" data-id="<?php echo $row['id']; ?>">Iniciar</button>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value-edit">
+                                    <button class="editar-btn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="<?php echo $row['id']; ?>">Editar</button>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value-reminder">
+                                    <button class="lembrete-btn btn btn-warning" data-bs-toggle="modal" data-bs-target="#lembreteModal" data-id="<?php echo $row['id']; ?>">Lembretes</button>
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
                 <?php } ?>
             </div>

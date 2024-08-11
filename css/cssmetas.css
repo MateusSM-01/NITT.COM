@@ -119,13 +119,6 @@
     margin: 0px 10px;
 
   }
-  .meta-value-play {
-    justify-content: space-around;
-    background-image: url('../assets/img/botao-play.png');
-    background-size: contain; /* para ajustar o tamanho do ícone */
-    background-repeat: no-repeat;
-    width: 24px; /* largura desejada do ícone */
-    height: 24px; /* altura desejada do ícone */
-}
+
 
   
