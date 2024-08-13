@@ -9,6 +9,9 @@
         exit;
     }
 
+    $mensagem = isset($_GET['mensagem']) ? htmlspecialchars($_GET['mensagem']) : '';
+    
+
     // Obtém o email do usuário atualmente logado
     $emailUsuario = $_SESSION["email"];
 
@@ -43,6 +46,10 @@
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="bg-dark">
+
+    <?php if ($mensagem){ ?>
+        <p style="color: red;"><?php echo urldecode($mensagem); ?></p>
+    <?php } ?>
 
     <div class="container-fluid px-4">
         <h1 class="mt-4 text-primary m-4"> Aqui estão suas matérias! </h1>

@@ -4,6 +4,7 @@ include("useful/footeratv.php");
 include("useful/header.php");
 
 session_start();
+
 if (!isset($_SESSION["email"])) {
     header('Location: ../view/login.php?erro=Realize+o+login.');
     exit;
@@ -20,6 +21,21 @@ if (!isset($_SESSION["email"])) {
     $queryFraseMotivacional = "SELECT Frase FROM FrasesMotivac ORDER BY RAND() LIMIT 1";
     $resultFraseMotivacional = mysqli_query($con, $queryFraseMotivacional);
     $fraseMotivacional = mysqli_fetch_assoc($resultFraseMotivacional)['Frase'];
+    // Consultar o número de matérias
+    $queryMateria = "SELECT COUNT(*) AS total FROM materias";
+    $result = mysqli_query($con, $queryMateria);
+    // Verificar se a consulta foi bem-sucedida
+    if ($result) {
+        $row = mysqli_fetch_assoc($result);
+        if ($row['total'] == 0) {
+            // Redirecionar para a tela de cadastro com uma mensagem GET
+            header('Location: ../view/materias.php?mensagem=Cadastre+uma+materia+antes+de+iniciar+as+atividades.');
+            exit();
+        }
+    } else {
+        echo "Erro na consulta: " . mysqli_error($con);
+    }
+
 }
 ?>
 
