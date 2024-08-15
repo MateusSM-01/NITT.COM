@@ -56,6 +56,11 @@
                         echo '<div class="card mb-3">';
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title">' . $row["nome"] . '</h5>';
+                        echo '<div class="meta-item">';
+                        echo '<div class="meta-value-edit">';
+                        echo '<a href="editmateria.php?id='. $row["id"].'" class="btn btn-secondary">Editar</a>';            
+                        echo '</div>';
+                        echo '</div>' ;   
                         echo '</div>';
                         echo '</div>';
                         echo '</div>';
