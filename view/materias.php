@@ -11,12 +11,11 @@
 
     $mensagem = isset($_GET['mensagem']) ? htmlspecialchars($_GET['mensagem']) : '';
     
-
     // Obtém o email do usuário atualmente logado
     $emailUsuario = $_SESSION["email"];
 
     // Consulta SQL para selecionar as matérias associadas ao usuário atual
-    $query = "SELECT * FROM materias WHERE usuario_id = (
+    $query = "SELECT nome, professor, status FROM materias WHERE usuario_id = (
                 SELECT id FROM usuarios WHERE email = ?
               )";
               
@@ -63,6 +62,8 @@
                         echo '<div class="card mb-3">';
                         echo '<div class="card-body">';
                         echo '<h5 class="card-title">' . $row["nome"] . '</h5>';
+                        echo '<p class="card-text">Professor: ' . $row["professor"] . '</p>';
+                        echo '<p class="card-text">Status: ' . $row["status"] . '</p>';
                         echo '<div class="meta-item">';
                         echo '<div class="meta-value-edit">';
                         echo '<a href="editmateria.php?id='. $row["id"].'" class="btn btn-secondary">Editar</a>';            

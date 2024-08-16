@@ -34,13 +34,28 @@ $resultMat = mysqli_stmt_get_result($stmtMat);
 <body class="bg-dark">
 
     <div class="container mt-5 text-center">
-        <h1 class="text-center mb-4 text-white-75 ">Adicionar Nova Matéria</h1> 
+        <h1 class="text-center mb-4 text-white-75">Adicionar Nova Matéria</h1> 
         <div class="d-flex justify-content-center align-items-center">
             <div class="col-md-6">
                 <form method="post" action="../controller/validamateria.php">
                     <div class="mb-3">
-                        <label for="descricao" class="form-label text-white-50">Nome Matéria</label>
-                        <textarea class="form-control" id="descricao" name="nome" rows="1" required></textarea>
+                        <label for="nome" class="form-label text-white-50">Nome Matéria</label>
+                        <textarea class="form-control" id="nome" name="nome" rows="1" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="professor" class="form-label text-white-50">Professor</label>
+                        <input type="text" class="form-control" id="professor" name="professor" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label text-white-50">Status</label>
+                        <select class="form-control" id="status" name="status" required>
+                            <option value="Em andamento">Em andamento</option>
+                            <option value="Sem pendências">Sem pendências</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="descricao" class="form-label text-white-50">Descrição</label>
+                        <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Adicionar Matéria</button>
                 </form>
