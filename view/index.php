@@ -10,8 +10,11 @@ if (!isset($_SESSION["email"])) {
     exit;
 } else {
     $emailUsuario = $_SESSION["email"];
-    $queryAtividades = "SELECT * FROM atividades WHERE usuario_id = (
-                        SELECT id FROM usuarios WHERE email = ?
+    $queryAtividades = "SELECT a.*, m.nome AS nome_materia 
+                        FROM atividades a
+                        JOIN materias m ON a.materia_id = m.id
+                        WHERE a.usuario_id = (
+                            SELECT id FROM usuarios WHERE email = ?
                         )";
     $stmtAtividades = mysqli_prepare($con, $queryAtividades);
     mysqli_stmt_bind_param($stmtAtividades, "s", $emailUsuario);
@@ -65,7 +68,7 @@ if (!isset($_SESSION["email"])) {
                                 <div class="meta-value-large"><?php echo htmlspecialchars($row['nome']); ?></div>
                             </div>
                             <div class="meta-item">
-                                <div class="meta-value-medium">Matéria: <?php echo htmlspecialchars($row['materia_id']); ?></div>
+                                <div class="meta-value-medium">Matéria: <?php echo htmlspecialchars($row['nome_materia']); ?></div>
                             </div>
                             <div class="meta-item">
                                 <div class="meta-value-small">Data de Entrega: <?php echo htmlspecialchars($row['data_entrega']); ?></div>
@@ -77,7 +80,7 @@ if (!isset($_SESSION["email"])) {
                             </div>
                             <div class="meta-item">
                                 <div class="meta-value-edit">
-                                    <button class="editar-btn btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editarModal" data-id="<?php echo $row['id']; ?>">Editar</button>
+                                    <a href="editatividade.php?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Editar</a>
                                 </div>
                             </div>
                             <div class="meta-item">
