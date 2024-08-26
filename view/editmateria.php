@@ -10,8 +10,13 @@ if (!isset($_SESSION["email"])) {
 
 $idMateria = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
+if ($idMateria <= 0) {
+    header('Location: ../view/index.php?erro=Materia+invalida.');
+    exit;
+}
+
 // Consulta SQL para buscar os detalhes da matéria específica
-$queryMat = "SELECT nome FROM materias WHERE id = ? AND usuario_id = (
+$queryMat = "SELECT nome, professor, descricao FROM materias WHERE id = ? AND usuario_id = (
                 SELECT id FROM usuarios WHERE email = ?
             )";
 $stmtMat = mysqli_prepare($con, $queryMat);
@@ -21,6 +26,9 @@ $resultMat = mysqli_stmt_get_result($stmtMat);
 
 if ($row = mysqli_fetch_assoc($resultMat)) {
     $nomeMateria = $row['nome'];
+    $professorMateria = $row['professor'];
+
+    $descricaoMateria = $row['descricao'];
 } else {
     header('Location: ../view/index.php?erro=Materia+nao+encontrada.');
     exit;
@@ -42,13 +50,22 @@ if ($row = mysqli_fetch_assoc($resultMat)) {
 <body class="bg-dark">
 
     <div class="container mt-5 text-center">
-        <h1 class="text-center mb-4 text-white-75 ">Editar Matéria</h1>
+        <h1 class="text-center mb-4 text-white-75">Editar Matéria</h1>
         <div class="d-flex justify-content-center align-items-center">
             <div class="col-md-6">
                 <form method="post" action="../controller/updateMateria.php">
                     <div class="mb-3">
-                        <label for="descricao" class="form-label text-white-50">Nome Matéria</label>
-                        <textarea class="form-control" id="descricao" name="nome" rows="1" required><?php echo htmlspecialchars($nomeMateria); ?></textarea>
+                        <label for="nome" class="form-label text-white-50">Nome da Matéria</label>
+                        <textarea class="form-control" id="nome" name="nome" rows="1" required><?php echo htmlspecialchars($nomeMateria); ?></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="professor" class="form-label text-white-50">Professor</label>
+                        <input type="text" class="form-control" id="professor" name="professor" value="<?php echo htmlspecialchars($professorMateria); ?>" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="descricao" class="form-label text-white-50">Descrição</label>
+                        <textarea class="form-control" id="descricao" name="descricao" rows="3" required><?php echo htmlspecialchars($descricaoMateria); ?></textarea>
                     </div>
                     <input type="hidden" name="id" value="<?php echo $idMateria; ?>">
                     <button type="submit" class="btn btn-primary">Salvar Alterações</button>

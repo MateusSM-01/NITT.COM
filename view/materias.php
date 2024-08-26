@@ -15,7 +15,7 @@
     $emailUsuario = $_SESSION["email"];
 
     // Consulta SQL para selecionar as matérias associadas ao usuário atual
-    $query = "SELECT nome, professor, status FROM materias WHERE usuario_id = (
+    $query = "SELECT id, nome, professor, status FROM materias WHERE usuario_id = (
                 SELECT id FROM usuarios WHERE email = ?
               )";
               
