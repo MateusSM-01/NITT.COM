@@ -64,7 +64,7 @@ if ($row = mysqli_fetch_assoc($resultMat)) {
                     </div>
 
                     <div class="mb-3">
-                        <label for="descricao" class="form-label text-white-50">Descrição</label>
+                        <label for="descricao" class="form-label text-white-50">Descrição (Descreva seus motivos para finalizar essa matéria)</label>
                         <textarea class="form-control" id="descricao" name="descricao" rows="3" required><?php echo htmlspecialchars($descricaoMateria); ?></textarea>
                     </div>
                     <input type="hidden" name="id" value="<?php echo $idMateria; ?>">

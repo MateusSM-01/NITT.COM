@@ -48,6 +48,10 @@
 
     <?php if ($mensagem){ ?>
         <p style="color: red;"><?php echo urldecode($mensagem); ?></p>
+    <?php }elseif($sucesso){?>
+        <p style="color: green;">certo<?php echo urldecode($sucesso); ?></p>
+    <?php }elseif($erro){?>
+        <p style="color: red;">erro<?php echo urldecode($erro); ?></p>
     <?php } ?>
 
     <div class="container-fluid px-4">
@@ -65,8 +69,11 @@
                         echo '<p class="card-text">Professor: ' . $row["professor"] . '</p>';
                         echo '<p class="card-text">Status: ' . $row["status"] . '</p>';
                         echo '<div class="meta-item">';
-                        echo '<div class="meta-value-edit">';
+                        echo '<div class="meta-value-edit p-2">';
                         echo '<a href="editmateria.php?id='. $row["id"].'" class="btn btn-secondary">Editar</a>';            
+                        echo '</div>';
+                        echo '<div class="meta-value-delete p-2">';
+                        echo '<a href="../controller/deletemateria.php?id='. $row["id"].'" class="btn btn-danger">Excluir</a>';            
                         echo '</div>';
                         echo '</div>' ;   
                         echo '</div>';

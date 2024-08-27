@@ -1,6 +1,6 @@
 <?php
 
-include("../model/cadastromateria.php");
+include("../model/materias.php");
 
 session_start();
 if (!isset($_SESSION["email"])) {
