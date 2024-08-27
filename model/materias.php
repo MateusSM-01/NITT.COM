@@ -51,12 +51,11 @@ if (isset($_GET['id'])) {
     header('Location: ../view/materias.php?erro=ID+da+matéria+inválido.');
     exit;
 }
-
 // Função no modelo para excluir a matéria
 function excluirMateria($con, $idMateria, $emailUsuario) {
     $queryDelete = "DELETE FROM materias WHERE id = ? AND usuario_id = (
                         SELECT id FROM usuarios WHERE email = ?
-                    )";
+                    )"; 
     $stmtDelete = mysqli_prepare($con, $queryDelete);
     mysqli_stmt_bind_param($stmtDelete, "is", $idMateria, $emailUsuario);
 
