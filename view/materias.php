@@ -9,7 +9,21 @@
         exit;
     }
 
-    $mensagem = isset($_GET['mensagem']) ? htmlspecialchars($_GET['mensagem']) : '';
+    // Verifica se há uma mensagem de erro na URL
+    if (isset($_GET['erro'])) {
+        // Exibe a mensagem de erro
+        $mensagemErro = urldecode($_GET['erro']);
+        echo '<div class="alert alert-danger" role="alert">';
+        echo $mensagemErro;
+        echo '</div>';
+    } elseif (isset($_GET['successo'])) {
+        // Exibe a mensagem de erro
+        $mensagemSucesso = urldecode($_GET['successo']);
+        echo '<div class="alert alert-info" role="alert">';
+        echo $mensagemSucesso;
+        echo '</div>';
+    }
+
     
     // Obtém o email do usuário atualmente logado
     $emailUsuario = $_SESSION["email"];
@@ -46,13 +60,7 @@
 </head>
 <body class="bg-dark">
 
-    <?php if ($mensagem){ ?>
-        <p style="color: red;"><?php echo urldecode($mensagem); ?></p>
-    <?php }elseif($sucesso){?>
-        <p style="color: green;">certo<?php echo urldecode($sucesso); ?></p>
-    <?php }elseif($erro){?>
-        <p style="color: red;">erro<?php echo urldecode($erro); ?></p>
-    <?php } ?>
+    
 
     <div class="container-fluid px-4">
         <h1 class="mt-4 text-primary m-4"> Aqui estão suas matérias! </h1>

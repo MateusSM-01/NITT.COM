@@ -35,22 +35,6 @@ function adicionarMateria($nome, $emailUsuario) {
     }
 }
 
-if (isset($_GET['id'])) {
-    $idMateria = intval($_GET['id']);
-    $emailUsuario = $_SESSION["email"];
-
-    // Chama a função para excluir a matéria
-    if (excluirMateria($con, $idMateria, $emailUsuario)) {
-        header('Location: ../view/materias.php?sucesso=Materia+excluida+com+sucesso.');
-        exit;
-    } else {
-        header('Location: ../view/materias.php?erro=Falha+ao+excluir+matéria.');
-        exit;
-    }
-} else {
-    header('Location: ../view/materias.php?erro=ID+da+matéria+inválido.');
-    exit;
-}
 // Função no modelo para excluir a matéria
 function excluirMateria($con, $idMateria, $emailUsuario) {
     $queryDelete = "DELETE FROM materias WHERE id = ? AND usuario_id = (
