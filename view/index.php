@@ -9,6 +9,7 @@ if (!isset($_SESSION["email"])) {
     header('Location: ../view/login.php?erro=Realize+o+login.');
     exit;
 } else {
+
     $emailUsuario = $_SESSION["email"];
     $queryAtividades = "SELECT a.*, m.nome AS nome_materia 
                         FROM atividades a
@@ -35,6 +36,8 @@ if (!isset($_SESSION["email"])) {
             header('Location: ../view/materias.php?mensagem=Cadastre+uma+materia+antes+de+iniciar+as+atividades.');
             exit();
         }
+      
+    
     } else {
         echo "Erro na consulta: " . mysqli_error($con);
     }
@@ -55,6 +58,29 @@ if (!isset($_SESSION["email"])) {
 </head>
 <body class="bg-dark"> 
     <main>
+        <?php 
+        
+    // Verifica se há uma mensagem de erro na URL
+    if (isset($_GET['erro'])) {
+        // Exibe a mensagem de erro
+        $mensagemErro = urldecode($_GET['erro']);
+        echo '<div class="alert alert-danger" role="alert">';
+        echo $mensagemErro;
+        echo '</div>';
+    } elseif (isset($_GET['successo'])) {
+        // Exibe a mensagem de erro
+        $mensagemSucesso = urldecode($_GET['successo']);
+        echo '<div class="alert alert-info" role="alert">';
+        echo $mensagemSucesso;
+        echo '</div>';
+    }elseif (isset($_GET['mensagem'])) {
+        // Exibe a mensagem de erro
+        $mensagem = urldecode($_GET['mensagem']);
+        echo '<div class="alert alert-danger" role="alert">';
+        echo $mensagem;
+        echo '</div>';
+    }    
+        ?>
         <div class="container-fluid px-4">
             <h1 class="mt-4 text-primary mx-4">Aqui estão seus à fazeres!</h1>
             <ol class="breadcrumb mb-4 mx-4">
@@ -86,6 +112,11 @@ if (!isset($_SESSION["email"])) {
                             <div class="meta-item">
                                 <div class="meta-value-reminder">
                                     <button class="lembrete-btn btn btn-warning" data-bs-toggle="modal" data-bs-target="#lembreteModal" data-id="<?php echo $row['id']; ?>">Lembretes</button>
+                                </div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-value-delete">
+                                <a href="../controller/deleteatividade.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Excluir</a>
                                 </div>
                             </div>
                         </div>
