@@ -20,7 +20,7 @@ CREATE TABLE materias (
 CREATE TABLE atividades (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
-    status VARCHAR(50);
+    status VARCHAR(50),
     data_entrega DATE NOT NULL,
     materia_id INT,
     usuario_id INT,

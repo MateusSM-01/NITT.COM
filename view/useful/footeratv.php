@@ -20,7 +20,7 @@
         <a href="../view/addatividade.php"><button type="button" class="btn text-light text-center fw-bold py-4"><i class="fa-solid fa-plus" style="color: #63A1FF;font-size: 30px;"></i></button></a>
     </div>
     <div class="col text-center">
-        <a href="../view/materias.php"><button type="button" class="btn text-light text-center fw-bold py-4"><i class="fa-solid fa-book" style="color: #63A1FF;font-size: 30px;"></i></button></a>
+        <a href="../view/materias.php"><button type="button" class="btn text-light text-center fw-bold py-4"><i class="fa-solid fa-sitemap" style="color: #63A1FF;font-size: 30px;"></i></button></a>
     </div>
 </div>
 </body>
