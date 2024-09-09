@@ -82,7 +82,7 @@ if (!isset($_SESSION["email"])) {
     }    
         ?>
         <div class="container-fluid px-4">
-            <h1 class="mt-4 text-primary mx-4">Aqui estão seus à fazeres!</h1>
+            <h1 class="mt-4 text-primary mx-4">Aqui estão suas metas!</h1>
             <ol class="breadcrumb mb-4 mx-4">
                 <li class="breadcrumb-item active"><?php echo $fraseMotivacional; ?></li>
             </ol>
