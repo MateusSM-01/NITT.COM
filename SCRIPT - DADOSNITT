@@ -20,6 +20,14 @@ CREATE TABLE materias (
 CREATE TABLE atividades (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
+    descricao TEXT NOT NULL, -- Descrição detalhada da atividade (O que)
+    motivo TEXT,             -- Justificativa para a realização da atividade (Por que fazer?)
+    responsavel VARCHAR(100), -- Responsável pela execução da atividade (Quem vai fazer)
+    tipo_atividade ENUM('Horas', 'Lista de Exercício', 'Documento', 'Projeto') NOT NULL, -- Tipo de atividade (Mensurável)
+    quantidade INT,          -- Quantidade associada ao tipo de atividade (horas, exercícios, páginas)
+    viavel ENUM('Sim', 'Não'), -- Indica se é possível com os recursos atuais (Attainable)
+    prioridade INT,           -- Nível de prioridade da atividade (Relevant)
+    prazo DATE,               -- Prazo para conclusão da atividade (Time-Based)
     status VARCHAR(50),
     data_entrega DATE NOT NULL,
     materia_id INT,
@@ -27,6 +35,7 @@ CREATE TABLE atividades (
     FOREIGN KEY (materia_id) REFERENCES materias(id),
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
 );
+
 
 CREATE TABLE FrasesMotivac (
     id INT AUTO_INCREMENT PRIMARY KEY,
