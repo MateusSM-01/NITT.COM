@@ -1,30 +1,52 @@
 <?php
 include("conexao.php");
 
-function adicionarAtividade($descricao, $data_entrega, $materia_id, $emailUsuario) {
-    global $con;
+function adicionarAtividade(
+    $nome,
+    $descricao,
+    $data_entrega,
+    $motivo,
+    $responsavel,
+    $tipo_atividade,
+    $quantidade,
+    $viavel,
+    $prioridade,
+    $prazo,
+    $status,
+    $emailUsuario
+) {
+    // Sua lógica de conexão com o banco de dados
+    // Adicione a consulta SQL para inserir os dados na tabela `atividades`
+    $sql = "INSERT INTO atividades 
+            (nome, descricao, data_entrega, motivo, responsavel, tipo_atividade, quantidade, viavel, prioridade, prazo, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-    // Consulta SQL para obter o ID do usuário com base no email
-    $queryUsuario = "SELECT id FROM usuarios WHERE email = ?";
-    $stmtUsuario = mysqli_prepare($con, $queryUsuario);
-    mysqli_stmt_bind_param($stmtUsuario, "s", $emailUsuario);
-    mysqli_stmt_execute($stmtUsuario);
-    mysqli_stmt_bind_result($stmtUsuario, $usuario_id);
-    mysqli_stmt_fetch($stmtUsuario);
-    mysqli_stmt_close($stmtUsuario);
+    // Prepare a consulta usando a conexão com o banco de dados
+    $stmt = $conexao->prepare($sql);
+    $stmt->bind_param(
+        "ssssssisiis",
+        $nome,
+        $descricao,
+        $data_entrega,
+        $motivo,
+        $responsavel,
+        $tipo_atividade,
+        $quantidade,
+        $viavel,
+        $prioridade,
+        $prazo,
+        $status
+    );
 
-    // Verifica se o ID do usuário foi encontrado
-    if ($usuario_id) {
-        // Consulta SQL para inserir uma nova atividade
-        $queryAtividade = "INSERT INTO atividades (nome, data_entrega, materia_id, usuario_id) VALUES (?, ?, ?, ?)";
-        $stmtAtividade = mysqli_prepare($con, $queryAtividade);
-
-        mysqli_stmt_bind_param($stmtAtividade, "ssii", $descricao, $data_entrega, $materia_id, $usuario_id);
-        mysqli_stmt_execute($stmtAtividade);
-        mysqli_stmt_close($stmtAtividade);
+    // Execute a consulta e verifique por erros
+    if ($stmt->execute()) {
+        echo "Atividade adicionada com sucesso!";
     } else {
-        header('Location: ../view/login.php?erro=Usuário+não+encontrado.');
-        exit;
+        echo "Erro ao adicionar atividade: " . $stmt->error;
     }
+
+    $stmt->close();
+    $conexao->close();
 }
+
 ?>
