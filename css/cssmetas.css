@@ -120,5 +120,11 @@
 
   }
 
-
-  
+  body.pagina-atividades {
+    background-image: url('images/fundo-atividades.png'); /* Confirme o caminho correto */
+    background-size: cover; /* Faz o fundo cobrir toda a área */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+    background-position: center center; /* Centraliza o fundo */
+    min-height: 100vh; /* Garante a altura total da tela */
+    margin: 0; /* Remove margens que poderiam interferir */
+}

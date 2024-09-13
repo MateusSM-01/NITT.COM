@@ -56,8 +56,8 @@ if (!isset($_SESSION["email"])) {
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/cssmetas.css" rel="stylesheet">
 </head>
-<body class="bg-dark"> 
-    <main>
+<body class="pagina-atividades"> 
+    <main >
         <?php 
         
     // Verifica se há uma mensagem de erro na URL
