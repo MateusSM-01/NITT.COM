@@ -1,4 +1,12 @@
 @charset "UTF-8";
+body.pagina-atividades{
+  
+  background-image: url('../imgs/fundometas.png');
+  background-position: center; /* Centraliza o fundo */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  background-attachment: fixed; /* Faz com que o fundo permaneça fixo ao rolar a página */
+  background-size: cover; 
+}
 :root {
   --bs-blue: #250938;
   --bs-indigo: #6610f2;
@@ -120,11 +128,3 @@
 
   }
 
-  body.pagina-atividades {
-    background-image: url('images/fundo-atividades.png'); /* Confirme o caminho correto */
-    background-size: cover; /* Faz o fundo cobrir toda a área */
-    background-repeat: no-repeat; /* Evita repetição da imagem */
-    background-position: center center; /* Centraliza o fundo */
-    min-height: 100vh; /* Garante a altura total da tela */
-    margin: 0; /* Remove margens que poderiam interferir */
-}

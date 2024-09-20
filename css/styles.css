@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 :root {
   --bs-blue: #250938;
   --bs-indigo: #6610f2;
@@ -8183,8 +8184,7 @@ textarea.form-control-lg {
 }
 
 .bg-dark {
-  --bs-bg-opacity: 1;
-  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity)) !important;
+  background-color: #212529 !important;
 }
 
 .bg-black {
