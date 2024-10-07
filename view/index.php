@@ -86,7 +86,7 @@ if (!isset($_SESSION["email"])) {
             <ol class="breadcrumb mb-4 mx-4">
                 <li class="breadcrumb-item active"><?php echo $fraseMotivacional; ?></li>
             </ol>
-            <div class="card mb-4">
+            <div class="card mb-4 meta-container">
                 <?php while ($row = mysqli_fetch_assoc($resultAtividades)) { ?>
                     <div class="card-body mb-4 mx-5">
                         <div class="meta">

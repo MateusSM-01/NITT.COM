@@ -1,5 +1,6 @@
 <?php
 include("../model/cadastroatividade.php");
+include("../model/conexao.php"); // Inclua a conexão ao banco de dados
 
 session_start();
 if (!isset($_SESSION["email"])) {
@@ -20,7 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         isset($_POST["viavel"]) &&
         isset($_POST["prioridade"]) &&
         isset($_POST["prazo"]) &&
-        isset($_POST["status"])
+        isset($_POST["status"]) &&
+        isset($_POST["materia_id"]) // Certifique-se de que o ID da matéria também seja enviado
     ) {
         // Captura os dados do formulário
         $nome = $_POST["nome"];
@@ -34,25 +36,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $prioridade = $_POST["prioridade"];
         $prazo = $_POST["prazo"];
         $status = $_POST["status"];
-        $emailUsuario = $_SESSION["email"]; // Presumindo que o e-mail do usuário é necessário para alguma lógica
+        $materia_id = $_POST["materia_id"]; // Capturando o ID da matéria
+        $emailUsuario = $_SESSION["email"];
 
-        // Chama a função do modelo para adicionar a atividade
-        adicionarAtividade(
-            $nome,
-            $descricao,
-            $data_entrega,
-            $motivo,
-            $responsavel,
-            $tipo_atividade,
-            $quantidade,
-            $viavel,
-            $prioridade,
-            $prazo,
-            $status,
-            $emailUsuario
-        );
+        // Consulta para obter o usuario_id a partir do e-mail
+        $sql = "SELECT id FROM usuarios WHERE email = ?";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("s", $emailUsuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $usuario_id = $row["id"];
+
+            // Chama a função do modelo para adicionar a atividade
+            adicionarAtividade(
+                $nome,
+                $descricao,
+                $data_entrega,
+                $motivo,
+                $responsavel,
+                $tipo_atividade,
+                $quantidade,
+                $viavel,
+                $prioridade,
+                $prazo,
+                $status,
+                $materia_id,
+                $usuario_id
+            );
+
+            // Redireciona após adicionar a atividade
+            header('Location: ../view/index.php');
+            exit;
+        } else {
+            echo "Erro: Usuário não encontrado.";
+        }
+    } else {
+        echo "Erro: Campos obrigatórios faltando.";
     }
-    header('Location: ../view/index.php');
-    exit;
 }
 ?>
