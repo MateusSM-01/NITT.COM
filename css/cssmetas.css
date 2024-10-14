@@ -77,8 +77,6 @@ body.pagina-atividades{
 }
 .card {
     margin-bottom: 20px;
-    border: 1px solid rgb(255, 255, 255);
-    border-radius: var(--bs-border-radius);
   }
   .meta-container::-webkit-scrollbar {
     width: 12px; /* Largura da barra de rolagem */
@@ -107,6 +105,7 @@ body.pagina-atividades{
   .card-body1 {
     padding: 10px;
     border-radius: var(--bs-border-radius);
+   
   }
   .meta-container {
     display: flex;          /* Utiliza o layout flex */
