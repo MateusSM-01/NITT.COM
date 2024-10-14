@@ -7,6 +7,14 @@ body.pagina-atividades{
   background-attachment: fixed; /* Faz com que o fundo permaneça fixo ao rolar a página */
   background-size: cover; 
 }
+body.pagina-materias{
+  
+  background-image: url('../imgs/fundomaterias.png');
+  background-position: center; /* Centraliza o fundo */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  background-attachment: fixed; /* Faz com que o fundo permaneça fixo ao rolar a página */
+  background-size: cover; 
+}
 :root {
   --bs-blue: #250938;
   --bs-indigo: #6610f2;
@@ -104,7 +112,6 @@ body.pagina-atividades{
   
   .card-body1 {
     padding: 10px;
-    border-radius: var(--bs-border-radius);
    
   }
   .meta-container {
