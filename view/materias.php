@@ -63,10 +63,11 @@ $result = mysqli_stmt_get_result($stmt);
     <link href="../css/cssmetas.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-<body class="bg-dark pagina-materias">
+<body class="pagina-materias">
 
     <div class="container-fluid px-4">
         <h1 class="mt-4 text-primary m-4">Aqui estão suas matérias!</h1>
+        <div class="row">
             <?php
             // Verifica se há matérias retornadas pela consulta
             if (mysqli_num_rows($result) > 0) {
@@ -100,7 +101,7 @@ $result = mysqli_stmt_get_result($stmt);
                 echo '</div>';
             }
             ?>
-        
+        </div>
     </div>
 
 </body>
