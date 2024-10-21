@@ -12,9 +12,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["nome"])) {
         $nome = $_POST["nome"];
         $emailUsuario = $_SESSION["email"];
-        
+        $professor = $_POST["professor"];
+        $status = $_POST["status"];
+        $descricao = $_POST["descricao"];
         // Chama a função do modelo para adicionar a matéria
-        adicionarMateria($nome, $emailUsuario);
+        adicionarMateria($nome, $emailUsuario, $professor, $status, $descricao);
     }
     header('Location: ../view/materias.php');
     exit;

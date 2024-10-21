@@ -30,7 +30,7 @@ $resultMat = mysqli_stmt_get_result($stmtMat);
     <link href="../css/cssmetas.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
-<body class="bg-dark">
+<body class="pagina-atividades">
 <div class="container mt-5 ">
     <h1 class="text-center mb-4 text-white-75">Adicionar Nova Meta</h1>
     <div class="d-flex justify-content-center align-items-center">

@@ -31,3 +31,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 1000);
     }
 });
+
+
+ function updateTextareaColor() {
+        const statusSelect = document.getElementById('status');
+        const descricaoTextarea = document.getElementById('descricao');
+
+        if (statusSelect.value === 'Em andamento') {
+            descricaoTextarea.style.backgroundColor = '#ffeb3b'; // Amarelo
+            descricaoTextarea.style.color = '#000'; // Texto preto
+        } else if (statusSelect.value === 'Sem pendências') {
+            descricaoTextarea.style.backgroundColor = '#4caf50'; // Verde
+            descricaoTextarea.style.color = '#fff'; // Texto branco
+        } else {
+            descricaoTextarea.style.backgroundColor = ''; // Resetar
+            descricaoTextarea.style.color = ''; // Resetar
+        }
+    }
+

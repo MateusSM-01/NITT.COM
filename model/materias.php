@@ -8,7 +8,7 @@ if (!isset($_SESSION["email"])) {
     exit;
 }
 
-function adicionarMateria($nome, $emailUsuario) {
+function adicionarMateria($nome, $emailUsuario, $professor, $status, $descricao) {
     global $con;
 
     // Consulta SQL para obter o ID do usuário com base no email
@@ -22,12 +22,23 @@ function adicionarMateria($nome, $emailUsuario) {
 
     // Verifica se o ID do usuário foi encontrado
     if ($usuario_id) {
-        // Consulta SQL para inserir uma nova matéria
-        $queryMateria = "INSERT INTO materias (nome, usuario_id) VALUES (?, ?)";
+        $queryMateria="INSERT INTO materias (nome, professor, status, descricao, usuario_id) VALUES (?, ?, ?, ?, ?)";
         $stmtMateria = mysqli_prepare($con, $queryMateria);
 
-        mysqli_stmt_bind_param($stmtMateria, "si", $nome, $usuario_id);
-        mysqli_stmt_execute($stmtMateria);
+        // Verifique se a preparação da consulta foi bem-sucedida
+        if ($stmtMateria === false) {
+            die("Erro ao preparar a consulta: " . mysqli_error($con));
+        }
+
+        // Vincula os parâmetros (s = string, i = inteiro)
+        mysqli_stmt_bind_param($stmtMateria, "ssssi", $nome, $professor, $status, $descricao, $usuario_id);
+
+        // Executa a consulta
+        if (!mysqli_stmt_execute($stmtMateria)) {
+            die("Erro ao executar a consulta: " . mysqli_error($con));
+        }
+
+        // Fecha a declaração
         mysqli_stmt_close($stmtMateria);
     } else {
         header('Location: ../view/login.php?erro=Usuário+não+encontrado.');
