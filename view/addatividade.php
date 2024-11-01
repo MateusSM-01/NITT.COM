@@ -23,84 +23,136 @@ $resultMat = mysqli_stmt_get_result($stmtMat);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adicionar Atividade</title>
+    <title>Adicionar Nova Atividade</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.2/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet">
     <link href="../css/styles.css" rel="stylesheet">
     <link href="../css/cssmetas.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <style>
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-row .form-group {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .form-row .form-group:last-child {
+            margin-right: 0;
+        }
+    </style>
 </head>
-<body class="bg-dark">
-<div class="container mt-5 ">
-    <h1 class="text-center mb-4 text-white-75">Adicionar Nova Meta</h1>
+<body class="pagina-atividades">
+<div class="container mt-5">
+    <h1 class="text-center mb-4 text-white-75">Adicionar Nova Atividade</h1>
     <div class="d-flex justify-content-center align-items-center">
-        <div class="col-md-6">
-            <form method="post" action="../controller/validaatividade.php" class="text-center">
+        <div class="col-md-8">
+            <form method="post" action="../controller/validaatividade.php" class="form-container text-center">
                 <div class="mb-3">
-                    <label for="nome" class="form-label text-white-50">Nome da Atividade:</label>
-                    <input type="text" class="form-control" id="nome" name="nome" required>
+                    <label for="nome" class="form-label text-white-50">Título da Atividade</label>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Ex: Revisão de matéria para prova" required>
                 </div>
+                
+                <hr class="text-white-50">
+
                 <div class="mb-3">
-                    <label for="descricao" class="form-label text-white-50">Descrição da Atividade:</label>
-                    <textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
+                    <label for="descricao" class="form-label text-white-50">Descrição</label>
+                    <textarea class="form-control" id="descricao" name="descricao" rows="3" placeholder="Descreva brevemente o que será feito" required></textarea>
                 </div>
+
                 <div class="mb-3">
-                    <label for="motivo" class="form-label text-white-50">Motivo:</label>
-                    <textarea class="form-control" id="motivo" name="motivo" rows="2"></textarea>
+                    <label for="motivo" class="form-label text-white-50">Razão para Realizar</label>
+                    <textarea class="form-control" id="motivo" name="motivo" rows="2" placeholder="Por que esta atividade é importante?"></textarea>
                 </div>
-                <div class="mb-3">
-                    <label for="responsavel" class="form-label text-white-50">Responsável:</label>
-                    <input type="text" class="form-control" id="responsavel" name="responsavel">
+                
+                <hr class="text-white-50">
+
+                <div class="form-row mb-3">
+                    <div class="form-group">
+                        <label for="responsavel" class="form-label text-white-50">Responsável</label>
+                        <select class="form-select" id="responsavel" name="responsavel" required>
+                            <option value="Eu">Eu</option>
+                            <option value="Grupo">Grupo</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo_atividade" class="form-label text-white-50">Tipo de Atividade</label>
+                        <select class="form-select" id="tipo_atividade" name="tipo_atividade" required>
+                            <option value="Horas">Horas</option>
+                            <option value="Lista de Exercício">Lista de Exercício</option>
+                            <option value="Documento">Documento</option>
+                            <option value="Projeto">Projeto</option>
+                        </select>
+                    </div>
                 </div>
+
                 <div class="mb-3">
-                    <label for="tipo_atividade" class="form-label text-white-50">Tipo de Atividade:</label>
-                    <select class="form-select form-control" id="tipo_atividade" name="tipo_atividade" required>
-                        <option value="Horas">Horas</option>
-                        <option value="Lista de Exercício">Lista de Exercício</option>
-                        <option value="Documento">Documento</option>
-                        <option value="Projeto">Projeto</option>
-                    </select>
+                    <label for="quantidade" class="form-label text-white-50">Quantidade</label>
+                    <input type="number" class="form-control" id="quantidade" name="quantidade" min="0" placeholder="Informe a quantidade necessária">
                 </div>
+                
                 <div class="mb-3">
-                    <label for="quantidade" class="form-label text-white-50">Quantidade:</label>
-                    <input type="number" class="form-control" id="quantidade" name="quantidade" min="0">
-                </div>
-                <div class="mb-3">
-                    <label for="viavel" class="form-label text-white-50">Viável:</label>
-                    <select class="form-select form-control" id="viavel" name="viavel">
+                    <label for="viavel" class="form-label text-white-50">É Viável?</label>
+                    <select class="form-select" id="viavel" name="viavel">
                         <option value="Sim">Sim</option>
                         <option value="Não">Não</option>
                     </select>
                 </div>
-                <div class="mb-3">
-                    <label for="prioridade" class="form-label text-white-50">Prioridade:</label>
-                    <input type="number" class="form-control" id="prioridade" name="prioridade" min="1">
+
+                <hr class="text-white-50">
+
+                <div class="form-row mb-3">
+                    <div class="form-group">
+                        <label for="prioridade" class="form-label text-white-50">Nível de Prioridade</label>
+                        <select class="form-select" id="prioridade" name="prioridade" required>
+                            <option value="1">1 (Mais Urgente)</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5 (Menos Urgente)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="prazo" class="form-label text-white-50">Data Limite</label>
+                        <input type="date" class="form-control" id="prazo" name="prazo">
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <label for="prazo" class="form-label text-white-50">Prazo:</label>
-                    <input type="date" class="form-control" id="prazo" name="prazo">
+
+                <div class="form-row mb-3">
+                    <div class="form-group">
+                        <label for="status" class="form-label text-white-50">Status Atual</label>
+                        <select class="form-select" id="status" name="status" required>
+                            <option value="Pendente">Pendente</option>
+                            <option value="Em Andamento">Em Andamento</option>
+                            <option value="Concluída">Concluída</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="data_entrega" class="form-label text-white-50">Data de Conclusão Esperada</label>
+                        <input type="date" class="form-control" id="data_entrega" name="data_entrega" required>
+                    </div>
                 </div>
+
+                <hr class="text-white-50">
+
                 <div class="mb-3">
-                    <label for="status" class="form-label text-white-50">Status:</label>
-                    <input type="text" class="form-control" id="status" name="status">
-                </div>
-                <div class="mb-3">
-                    <label for="data_entrega" class="form-label text-white-50">Data de Entrega:</label>
-                    <input type="date" class="form-control" id="data_entrega" name="data_entrega" required>
-                </div>
-                <div class="mb-3">
-                    <label for="materia_id" class="form-label text-white-50">Matéria:</label>
-                    <select class="form-select form-control" id="materia_id" name="materia_id" required>
+                    <label for="materia_id" class="form-label text-white-50">Selecione a Matéria</label>
+                    <select class="form-select" id="materia_id" name="materia_id" required>
                         <?php
-                            // Loop através das matérias retornadas pela consulta e cria as opções para o menu suspenso
                             while ($row = mysqli_fetch_assoc($resultMat)) {
                                 echo "<option value='" . $row['id'] . "'>" . $row['nome'] . "</option>";
                             }
                         ?>
                     </select>
                 </div>
-               
-                <button type="submit" class="btn btn-primary my-4">Adicionar Atividade</button>
+
+                <button type="submit" class="btn btn-primary">Adicionar Atividade</button>
             </form>
         </div>
     </div>

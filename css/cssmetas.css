@@ -15,6 +15,14 @@ body.pagina-materias{
   background-attachment: fixed; /* Faz com que o fundo permaneça fixo ao rolar a página */
   background-size: cover; 
 }
+body.pagina-relatorios{
+  
+  background-image: url('../imgs/fundorelatorios.png');
+  background-position: center; /* Centraliza o fundo */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  background-attachment: fixed; /* Faz com que o fundo permaneça fixo ao rolar a página */
+  background-size: cover; 
+}
 :root {
   --bs-blue: #250938;
   --bs-indigo: #6610f2;
@@ -106,8 +114,9 @@ body.pagina-materias{
 
 /* Para Firefox */
 .meta-container {
-    scrollbar-width: thin; /* Largura da barra de rolagem */
-    scrollbar-color: #888 #f1f1f1; /* Cor do "polegar" e do fundo */
+  overflow-y: auto; /* Enables vertical scrollbar */
+  scrollbar-width: thin; /* For Firefox */
+  scrollbar-color: #0d6efd transparent; /* Scrollbar color and track color */
 }
   
   .card-body1 {
@@ -163,3 +172,19 @@ body.pagina-materias{
 
   }
 
+  .meta-button {
+    display: flex;
+    justify-content: space-between; /* Distribui os botões com espaços iguais */
+    gap: 10px; /* Ajusta o espaço entre os botões */
+    padding-top: 10px; /* Espaço superior para separar os botões do conteúdo acima */
+}
+.meta-priority {
+  font-weight: bold;
+  color: #007bff; /* Cor para destacar o nível de prioridade */
+}
+.meta-value-play,
+.meta-value-edit,
+.meta-value-delete {
+    flex: 1; /* Permite que cada botão ocupe a mesma quantidade de espaço */
+    text-align: center; /* Centraliza o texto do botão */
+}

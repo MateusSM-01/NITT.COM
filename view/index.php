@@ -12,11 +12,13 @@ if (!isset($_SESSION["email"])) {
 
     $emailUsuario = $_SESSION["email"];
     $queryAtividades = "SELECT a.*, m.nome AS nome_materia 
-                        FROM atividades a
-                        JOIN materias m ON a.materia_id = m.id
-                        WHERE a.usuario_id = (
-                            SELECT id FROM usuarios WHERE email = ?
-                        )";
+                    FROM atividades a
+                    JOIN materias m ON a.materia_id = m.id
+                    WHERE a.usuario_id = (
+                        SELECT id FROM usuarios WHERE email = ?
+                    )
+                    ORDER BY a.prioridade ASC"; 
+   
     $stmtAtividades = mysqli_prepare($con, $queryAtividades);
     mysqli_stmt_bind_param($stmtAtividades, "s", $emailUsuario);
     mysqli_stmt_execute($stmtAtividades);
@@ -93,28 +95,41 @@ if (!isset($_SESSION["email"])) {
                             <div class="meta-item">
                                 <div class="meta-value-large"><?php echo htmlspecialchars($row['nome']); ?></div>
                             </div>
+                            <?php 
+                            $priority = htmlspecialchars($row['prioridade']);
+                            $color = '';
+
+                            if ($priority == 1) {
+                                $color = '#dc3545'; // Vermelho
+                            } elseif ($priority == 2) {
+                                $color = '#ff7f50'; // Coral
+                            } elseif ($priority == 3) {
+                                $color = '#ffd700'; // Amarelo
+                            } elseif ($priority == 4) {
+                                $color = '#adff2f'; // Verde limão
+                            } else {
+                                $color = '#1e90ff'; // Azul
+                            }
+                            ?>
                             <div class="meta-item">
-                                <div class="meta-value-medium">Matéria: <?php echo htmlspecialchars($row['nome_materia']); ?></div>
+                                <div class="meta-priority" style="color: <?php echo $color; ?>;">
+                                    Prioridade: <?php echo $priority; ?>
+                                </div>
                             </div>
                             <div class="meta-item">
-                                <div class="meta-value-small">Data de Entrega: <?php echo htmlspecialchars($row['data_entrega']); ?></div>
+                                <div class="meta-value-medium">Sobre: <?php echo htmlspecialchars($row['nome_materia']); ?></div>
                             </div>
                             <div class="meta-item">
+                                <div class="meta-value-small">Prazo: <?php echo htmlspecialchars($row['data_entrega']); ?></div>
+                            </div>
+                            <div class="meta-button">
                                 <div class="meta-value-play">
                                     <button class="iniciar-btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#pomodoroModal" data-id="<?php echo $row['id']; ?>">Iniciar</button>
                                 </div>
-                            </div>
-                            <div class="meta-item">
                                 <div class="meta-value-edit">
                                     <a href="editatividade.php?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Editar</a>
                                 </div>
-                            </div>
-                            <div class="meta-item">
-                                <div class="meta-value-reminder">
-                                    <button class="lembrete-btn btn btn-warning" data-bs-toggle="modal" data-bs-target="#lembreteModal" data-id="<?php echo $row['id']; ?>">Lembretes</button>
-                                </div>
-                            </div>
-                            <div class="meta-item">
+                            
                                 <div class="meta-value-delete">
                                 <a href="../controller/deleteatividade.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Excluir</a>
                                 </div>

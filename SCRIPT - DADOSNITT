@@ -29,7 +29,6 @@ CREATE TABLE atividades (
     prioridade INT,           -- Nível de prioridade da atividade (Relevant)
     prazo DATE,               -- Prazo para conclusão da atividade (Time-Based)
     status VARCHAR(50),
-    data_entrega DATE NOT NULL,
     materia_id INT,
     usuario_id INT,
     FOREIGN KEY (materia_id) REFERENCES materias(id),
