@@ -1,33 +1,36 @@
 <?php
+// Exibe todos os erros para depuração
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Inclui arquivos necessários
 include("../model/conexao.php");
 include("useful/footermat.php");
 include("useful/header.php");
 
 session_start();
+
+// Verifica se a sessão está ativa
 if (!isset($_SESSION["email"])) {
     header('Location: ../view/login.php?erro=Realize+o+login.');
     exit;
 }
 
-// Verifica se há uma mensagem de erro na URL
+// Verifica a conexão com o banco de dados
+if (!$con) {
+    die("Erro na conexão: " . mysqli_connect_error());
+}
+
+// Verifica se há mensagens de erro na URL
 if (isset($_GET['erro'])) {
-    // Exibe a mensagem de erro
     $mensagemErro = urldecode($_GET['erro']);
-    echo '<div class="alert alert-danger" role="alert">';
-    echo $mensagemErro;
-    echo '</div>';
+    echo '<div class="alert alert-danger" role="alert">' . htmlspecialchars($mensagemErro) . '</div>';
 } elseif (isset($_GET['successo'])) {
-    // Exibe a mensagem de sucesso
     $mensagemSucesso = urldecode($_GET['successo']);
-    echo '<div class="alert alert-info" role="alert">';
-    echo $mensagemSucesso;
-    echo '</div>';
+    echo '<div class="alert alert-info" role="alert">' . htmlspecialchars($mensagemSucesso) . '</div>';
 } elseif (isset($_GET['mensagem'])) {
-    // Exibe a mensagem
     $mensagem = urldecode($_GET['mensagem']);
-    echo '<div class="alert alert-danger" role="alert">';
-    echo $mensagem;
-    echo '</div>';
+    echo '<div class="alert alert-danger" role="alert">' . htmlspecialchars($mensagem) . '</div>';
 }
 
 // Obtém o email do usuário atualmente logado
@@ -41,14 +44,22 @@ $query = "SELECT id, nome, professor, status FROM materias WHERE usuario_id = (
 // Prepara a consulta
 $stmt = mysqli_prepare($con, $query);
 
+if ($stmt === false) {
+    die("Erro ao preparar a consulta: " . mysqli_error($con));
+}
+
 // Vincula o parâmetro de email
 mysqli_stmt_bind_param($stmt, "s", $emailUsuario);
 
 // Executa a consulta
-mysqli_stmt_execute($stmt);
+if (!mysqli_stmt_execute($stmt)) {
+    die("Erro ao executar a consulta: " . mysqli_error($con));
+}
 
 // Obtém o resultado da consulta
 $result = mysqli_stmt_get_result($stmt);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -81,14 +92,18 @@ $result = mysqli_stmt_get_result($stmt);
                                         <h5 class="card-title"><?php echo htmlspecialchars($row['nome']); ?></h5>
                                     </div>
                                     <div class="meta-item">
-                                        <p class="card-text">Professor: <?php echo htmlspecialchars($row['professor']); ?></p>
+                                        <p class="card-text">Professor: <?php echo ($row['professor']); ?></p>
                                     </div>
                                     <div class="meta-item">
-                                        <p class="card-text">Status: <?php echo htmlspecialchars($row['status']); ?></p>
+                                        <p class="card-text">Status: <?php echo ($row['status']); ?></p>
                                     </div>
                                     <div class="meta-item d-flex justify-content-between">
-                                        <a href="editmateria.php?id=<?php echo $row['id']; ?>" class="btn btn-secondary">Editar</a>
-                                        <a href="../controller/deletemateria.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Excluir</a>
+                                        <a href="editmateria.php?id=<?php echo $row['id']; ?>" class="btn btn-warning">
+                                            <i class="fa-solid fa-pencil"></i> Editar
+                                        </a>
+                                        <a href="../controller/deletemateria.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">
+                                            <i class="fa-solid fa-trash"></i> Excluir
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -103,6 +118,8 @@ $result = mysqli_stmt_get_result($stmt);
             ?>
         </div>
     </div>
-
+            
 </body>
+
 </html>
+

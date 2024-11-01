@@ -11245,4 +11245,16 @@ body {
   width: 20px !important;
   font-size: 0.75rem;
   border-radius: 0.375rem !important;
+
+}
+
+
+.status-amarelo {
+  background-color: #ffeb3b; /* Amarelo */
+  color: #000; /* Cor do texto */
+}
+
+.status-verde {
+  background-color: #4caf50; /* Verde */
+  color: #fff; /* Cor do texto */
 }
