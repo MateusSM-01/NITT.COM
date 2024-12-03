@@ -4,7 +4,6 @@ include("conexao.php");
 function adicionarAtividade(
     $nome,
     $descricao,
-    $data_entrega,
     $motivo,
     $responsavel,
     $tipo_atividade,
@@ -25,8 +24,8 @@ function adicionarAtividade(
 
     // Consulta SQL para inserir os dados na tabela `atividades`
     $sql = "INSERT INTO atividades 
-            (nome, descricao, data_entrega, motivo, responsavel, tipo_atividade, quantidade, viavel, prioridade, prazo, status, materia_id, usuario_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            (nome, descricao, motivo, responsavel, tipo_atividade, quantidade, viavel, prioridade, prazo, status, materia_id, usuario_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     // Prepare a consulta
     $stmt = $con->prepare($sql);
@@ -38,10 +37,9 @@ function adicionarAtividade(
 
     // Vincula os parâmetros à consulta
     $stmt->bind_param(
-        "ssssssisiisii", // Tipos de dados correspondentes
+        "sssssisiisii", // Tipos de dados correspondentes
         $nome,
         $descricao,
-        $data_entrega,
         $motivo,
         $responsavel,
         $tipo_atividade,

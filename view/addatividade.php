@@ -133,10 +133,6 @@ $resultMat = mysqli_stmt_get_result($stmtMat);
                             <option value="Concluída">Concluída</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="data_entrega" class="form-label text-white-50">Data de Conclusão Esperada</label>
-                        <input type="date" class="form-control" id="data_entrega" name="data_entrega" required>
-                    </div>
                 </div>
 
                 <hr class="text-white-50">

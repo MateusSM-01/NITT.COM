@@ -18,6 +18,9 @@
         <a href="../view/addatividade.php">
             <button type="button" class="btn text-light text-center fw-bold py-4">
                 <i class="fa-solid fa-square-plus" style="color: #63A1FF;font-size: 30px;"></i>
+                <br>
+                <br>
+                <h6>Adicionar</h6>
             </button>
         </a>
     </div>
@@ -25,6 +28,9 @@
         <a href="../view/materias.php">
             <button type="button" class="btn text-light text-center fw-bold py-4">
                 <i class="fa-solid fa-layer-group" style="color: #63A1FF;font-size: 30px;"></i>
+                <br>
+                <br>
+                <h6>Matérias</h6>
             </button>
         </a>
     </div>
@@ -32,6 +38,9 @@
         <a href="../view/relatorios.php">
             <button type="button" class="btn text-light text-center fw-bold py-4">
                 <i class="fa-solid fa-chart-line" style="color: #63A1FF;font-size: 30px;"></i>
+                <br>
+                <br>
+                <h6>Relatórios</h6>
             </button>
         </a>
     </div>

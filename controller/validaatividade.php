@@ -13,7 +13,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (
         isset($_POST["nome"]) &&
         isset($_POST["descricao"]) &&
-        isset($_POST["data_entrega"]) &&
         isset($_POST["motivo"]) &&
         isset($_POST["responsavel"]) &&
         isset($_POST["tipo_atividade"]) &&
@@ -27,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Captura os dados do formulário
         $nome = $_POST["nome"];
         $descricao = $_POST["descricao"];
-        $data_entrega = $_POST["data_entrega"];
         $motivo = $_POST["motivo"];
         $responsavel = $_POST["responsavel"];
         $tipo_atividade = $_POST["tipo_atividade"];
@@ -54,7 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             adicionarAtividade(
                 $nome,
                 $descricao,
-                $data_entrega,
                 $motivo,
                 $responsavel,
                 $tipo_atividade,

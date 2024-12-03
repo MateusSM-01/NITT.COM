@@ -102,7 +102,7 @@ if (!isset($_SESSION["email"])) {
                                 <div class="meta-value-medium">Sobre: <?php echo htmlspecialchars($row['nome_materia']); ?></div>
                             </div>
                             <div class="meta-item">
-                                <div class="meta-value-small">Prazo: <?php echo htmlspecialchars($row['data_entrega']); ?></div>
+                                <div class="meta-value-small">Prazo: <?php echo htmlspecialchars($row['prazo']); ?></div>
                             </div>
                             <div class="meta-item">
                                 <div class="meta-value-small">Status: <?php echo htmlspecialchars($row['status']); ?></div> <!-- Status da atividade -->
